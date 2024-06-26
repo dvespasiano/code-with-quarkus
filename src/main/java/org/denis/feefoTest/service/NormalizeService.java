@@ -21,7 +21,7 @@ public class NormalizeService {
         if (!Objects.isNull(jobTitle)) {
             LevenshteinDistance levenshteinDistance = new LevenshteinDistance();
 
-            AtomicReference<Double> highestQualityScore = new AtomicReference<>(0.2);
+            AtomicReference<Double> highestQualityScore = new AtomicReference<>(0.5);
 
             normalizedJobTitles
                     .keySet()
@@ -35,7 +35,8 @@ public class NormalizeService {
                             bestMatch.set(key);
                         }
                     });
+            return normalizedJobTitles.getOrDefault(bestMatch.get(), jobTitle);
         }
-        return normalizedJobTitles.getOrDefault(bestMatch.get(), jobTitle);
+        return bestMatch.get();
     }
 }
