@@ -12,15 +12,13 @@ import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
 
 @Path("/normalize")
 @RequiredArgsConstructor
-@Consumes(MediaType.APPLICATION_JSON)
-@Produces(MediaType.APPLICATION_JSON)
 public class NormalizeResource {
 
     @Inject
     NormalizeService normalizeService;
 
     @POST
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
     public String normalizeJobTitle(@RequestBody String jobTitle) {
         return normalizeService.normalizingJobTitles(jobTitle);
     }
